@@ -54,42 +54,42 @@ function init() {
   // ==========================================================
   
   // é construído saturno e adicionado como filho do sol em uma órbita mais distante
-  // saturn = new THREE.Mesh(sphereGeometry, saturnMaterial);
-  // saturn.position.x = 14;
-  // saturn.scale.set(0.8, 0.8, 0.8);
-  // sun.add(saturn);
+  saturn = new THREE.Mesh(sphereGeometry, saturnMaterial);
+  saturn.position.x = 14;
+  saturn.scale.set(0.8, 0.8, 0.8);
+  sun.add(saturn);
 
   // // é construído o anel de saturno usando geometria de rosca
-  // const ringGeometry = new THREE.TorusGeometry(1.5, 0.2, 16, 100);
-  // const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xffccaa });
-  // const saturnRing = new THREE.Mesh(ringGeometry, ringMaterial);
-  // // é rotacionado o anel em 90 graus (pi / 2 radianos) no eixo x para deitá-lo
-  // saturnRing.rotation.x = Math.PI / 2;
-  // saturn.add(saturnRing);
+  const ringGeometry = new THREE.TorusGeometry(1.5, 0.2, 16, 100);
+  const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xffccaa });
+  const saturnRing = new THREE.Mesh(ringGeometry, ringMaterial);
+  // é rotacionado o anel em 90 graus (pi / 2 radianos) no eixo x para deitá-lo
+  saturnRing.rotation.x = Math.PI / 2;
+  saturn.add(saturnRing);
 
   // ==========================================================
   // EXERCÍCIO 2: Descomente o bloco abaixo para criar o Satélite
   // ==========================================================
   
-  // // é instanciado um grupo vazio para compor o satélite artificial
-  // satellite = new THREE.Group();
+  // é instanciado um grupo vazio para compor o satélite artificial
+  satellite = new THREE.Group();
 
-  // // são construídas as partes individuais do satélite (corpo e painéis)
-  // const bodyGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-  // const panelGeometry = new THREE.BoxGeometry(2, 0.1, 0.4);
-  // const grayMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
-  // const blueMaterial = new THREE.MeshBasicMaterial({ color: 0x2222ff });
+  // são construídas as partes individuais do satélite (corpo e painéis)
+  const bodyGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+  const panelGeometry = new THREE.BoxGeometry(2, 0.1, 0.4);
+  const grayMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+  const blueMaterial = new THREE.MeshBasicMaterial({ color: 0x2222ff });
 
-  // const satelliteBody = new THREE.Mesh(bodyGeometry, grayMaterial);
-  // const satellitePanels = new THREE.Mesh(panelGeometry, blueMaterial);
+  const satelliteBody = new THREE.Mesh(bodyGeometry, grayMaterial);
+  const satellitePanels = new THREE.Mesh(panelGeometry, blueMaterial);
 
-  // // são agrupadas as peças dentro do grupo pai
-  // satellite.add(satelliteBody);
-  // satellite.add(satellitePanels);
+  // são agrupadas as peças dentro do grupo pai
+  satellite.add(satelliteBody);
+  satellite.add(satellitePanels);
 
-  // // é posicionado o satélite inteiro e adicionado como filho da terra
-  // satellite.position.set(0, 2, 0);
-  // earth.add(satellite);
+  // é posicionado o satélite inteiro e adicionado como filho da terra
+  satellite.position.set(0, 2, 0);
+  earth.add(satellite);
 
   // é inicializado o controle de órbita da câmera
   controls = new OrbitControls(camera, renderer.domElement);
@@ -127,13 +127,13 @@ function animate() {
   earth.rotation.y += 0.02;
   
   // EXERCÍCIO 1: Descomente para animar Saturno
-  // saturn.rotation.y += 0.01;
+  saturn.rotation.y += 0.01;
 
   // EXERCÍCIO 2: Descomente para animar o Satélite
-  // // é rotacionado o satélite em seu próprio eixo
-  // satellite.rotation.y += 0.05;
-  // // é calculada a flutuação do satélite no eixo y usando a função seno sobre o tempo
-  // satellite.position.y = 2 + Math.sin(time * 2) * 0.5;
+  // é rotacionado o satélite em seu próprio eixo
+  satellite.rotation.y += 0.05;
+  // é calculada a flutuação do satélite no eixo y usando a função seno sobre o tempo
+  satellite.position.y = 2 + Math.sin(time * 2) * 0.5;
 
   // são atualizados os controles da câmera
   controls.update();
